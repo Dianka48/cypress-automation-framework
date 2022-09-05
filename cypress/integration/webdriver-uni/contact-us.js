@@ -52,7 +52,7 @@ describe("Test contact us form via WebdriverUni", () => {
     // cy.get("h1").should("have.text", "Thank You for your Message!");
   });
 
-  it("Should not be able to submit a successful submission via contact us form as all fields are required", () => {
+  it.only("Should not be able to submit a successful submission via contact us form as all fields are required", () => {
     // cy.webdriverUniContactFormSubmission(
     //   data.first_name,
     //   data.last_name,
@@ -61,13 +61,16 @@ describe("Test contact us form via WebdriverUni", () => {
     //   "body",
     //   "Error: Invalid email address"
     // );
-    contactUsPage.contactFormSubmission(
-      data.first_name,
-      data.last_name,
-      " ",
-      "Test comment",
-      "body",
-      "Error: Invalid email address"
-    );
+    if (Cypress.isBrowser("firefox")) {
+    } else {
+      contactUsPage.contactFormSubmission(
+        data.first_name,
+        data.last_name,
+        " ",
+        "Test comment",
+        "body",
+        "Error: Invalid email address"
+      );
+    }
   });
 });
